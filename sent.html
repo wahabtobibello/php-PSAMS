@@ -11,7 +11,7 @@
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
           crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <!--body-->
 
@@ -67,36 +67,58 @@
     </nav>
 </header>
 <div class="container">
-    <h3 class="mt-4 mb-3">Bookings</h3>
+    <h3 class="mt-4 mb-3">Sent Messages</h3>
     <hr/>
     <table class="table table-striped table-hover">
-        <thead>
         <tr>
-            <th>Student Name</th>
-            <th>Matric No.</th>
-            <th>Day</th>
-            <th>Time</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td scope="row">John Doe
-            </th>
-            <td>130805000</td>
-            <td>Monday</td>
-            <td>02:00pm</td>
+            <td scope="row">To: John Doe <130805000>
+            </td>
+            <td>&lt;Subject goes here&gt;</td>
+            <td>&lt;Date goes here&gt;</td>
             <td>
-                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#messageModal">
-                    Message
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#viewMessageModal">View
                 </button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#cancelMessageModal">
-                    Cancel
-                </button>
+                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#messageModal">Message</button>
             </td>
         </tr>
-        <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="message"
+        <div class="modal fade" id="viewMessageModal" tabindex="-1" role="dialog" aria-labelledby="viewMessage"
              aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="viewMessage">Message Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <p>&lt;Subject goes there&gt;</p>
+                                <p class="form-control">Sed ut perspiciatis unde omnis iste natus error sit
+                                    voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+                                    ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
+                                    explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+                                    fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
+                                    nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                                    consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut
+                                    labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam,
+                                    quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid
+                                    ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea
+                                    voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum
+                                    fugiat quo voluptas nulla pariatur?
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="message" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -109,8 +131,7 @@
                         <form>
                             <div class="form-group">
                                 <label for="recipient" class="form-control-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient" value="John Doe <130805000>"
-                                       disabled>
+                                <input type="text" class="form-control" id="recipient" value="John Doe <130805000>" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="subject" class="form-control-label">Subject:</label>
@@ -129,42 +150,6 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="cancelMessageModal" tabindex="-1" role="dialog" aria-labelledby="cancelMessage"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="cancelMessage">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="cancelRecipient" class="form-control-label">Recipient:</label>
-                                <input type="text" class="form-control" id="cancelRecipient"
-                                       value="John Doe <130805000>" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="cancelSubject" class="form-control-label">Subject:</label>
-                                <input type="text" class="form-control" id="cancelSubject" value="Cancelled Appointment"
-                                       disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="cancelMessageText" class="form-control-label">Message:</label>
-                                <textarea class="form-control" id="cancelMessageText"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-danger">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </tbody>
     </table>
 </div>
 <!-- jQuery first, then Tether, then Bootstrap JS. -->

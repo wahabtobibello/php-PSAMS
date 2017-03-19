@@ -1,10 +1,11 @@
 nav{
-  border-bottom: 0.2rem solid #555;
+  background-color: #3E474F;
 }
 .nav .nav-item>.nav-link:not(.active){
   color: #555;
 }
 .nav .nav-item>.active{
   border-radius: 0;
-  background-color: #555;
+  background-color: #e3e3e3;
+  color:black;
 }
