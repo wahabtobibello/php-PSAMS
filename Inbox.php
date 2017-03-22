@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/inc/header.php' ?>
+<?php require_once __DIR__ . '/inc/Header.php' ?>
     <h3 class="mt-4 mb-3">Inbox</h3>
     <hr/>
     <table class="table table-striped table-hover">
@@ -87,4 +87,4 @@
             </div>
         </div>
     </table>
-<?php require_once __DIR__ . '/inc/footer.php' ?>
+<?php require_once __DIR__ . '/inc/Footer.php' ?>

@@ -1,4 +1,4 @@
-<?php include_once __DIR__ . '/inc/header.php' ?>
+<?php include_once __DIR__ . '/inc/Header.php' ?>
     <h3 class="mt-4 mb-3">Schedule</h3>
     <hr/>
     <table class="table table-striped table-hover">
@@ -18,7 +18,7 @@
             <td>12:00pm</td>
             <td>5</td>
             <td>
-                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editSchedule">Edit</button>
                 <button type="button" class="btn btn-secondary">Clear</button>
             </td>
         </tr>
@@ -28,7 +28,7 @@
             <td>12:00pm</td>
             <td>5</td>
             <td>
-                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editSchedule">Edit</button>
                 <button type="button" class="btn btn-secondary">Clear</button>
             </td>
         </tr>
@@ -38,7 +38,7 @@
             <td>12:00pm</td>
             <td>5</td>
             <td>
-                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editSchedule">Edit</button>
                 <button type="button" class="btn btn-secondary">Clear</button>
             </td>
         </tr>
@@ -48,7 +48,7 @@
             <td>12:00pm</td>
             <td>5</td>
             <td>
-                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editSchedule">Edit</button>
                 <button type="button" class="btn btn-secondary">Clear</button>
             </td>
         </tr>
@@ -58,10 +58,13 @@
             <td>12:00pm</td>
             <td>5</td>
             <td>
-                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editSchedule">Edit</button>
                 <button type="button" class="btn btn-secondary">Clear</button>
             </td>
         </tr>
         </tbody>
     </table>
-<?php include_once __DIR__ . '/inc/footer.php' ?>
+<?php
+include_once __DIR__ . '/inc/EditScheduleModal.php';
+include_once __DIR__ . '/inc/Footer.php'
+?>
