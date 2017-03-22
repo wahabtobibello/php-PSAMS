@@ -1,7 +1,7 @@
-<?php require_once __DIR__ . '/inc/Header.php' ?>
+<?php require_once __DIR__ . '/inc/header.php' ?>
     <h3 class="mt-4 mb-3">Change Password</h3>
     <hr/>
-    <form action="/procedures/DoChangePassword.php" method="post">
+    <form action="/procedures/doChangePassword.php" method="post">
         <div class="form-group row">
             <label for="oldPassword" class="col-md-2 offset-md-2 col-form-label">Old Password:</label>
             <div class="col-6">
@@ -26,4 +26,4 @@
             </div>
         </div>
     </form>
-<?php require_once __DIR__ . '/inc/Footer.php' ?>
+<?php require_once __DIR__ . '/inc/footer.php' ?>

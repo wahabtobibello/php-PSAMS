@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/inc/Header.php' ?>
+<?php require_once __DIR__ . '/inc/header.php' ?>
 <h3 class="mt-4 mb-3">Sent Messages</h3>
     <hr/>
     <table class="table table-striped table-hover">
@@ -50,6 +50,6 @@
                 </div>
             </div>
         </div>
-        <?php include_once __DIR__ . '/inc/ComposeMessageModal.php'?>
+        <?php include_once __DIR__ . '/inc/composeMessageModal.php' ?>
     </table>
-<?php require_once __DIR__ . '/inc/Footer.php' ?>
+<?php require_once __DIR__ . '/inc/footer.php' ?>

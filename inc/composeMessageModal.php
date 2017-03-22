@@ -13,15 +13,15 @@
                     <div class="form-group">
                         <label for="recipient" class="form-control-label">Recipient:</label>
                         <input type="text" class="form-control" id="recipient" value="John Doe <130805000>"
-                               disabled>
+                               name="recipient" disabled>
                     </div>
                     <div class="form-group">
                         <label for="subject" class="form-control-label">Subject:</label>
-                        <input type="text" class="form-control" id="subject">
+                        <input type="text" class="form-control" id="subject" name="subject">
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="form-control-label">Message:</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea class="form-control" id="messageText" name="messageText"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

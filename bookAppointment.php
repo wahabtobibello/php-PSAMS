@@ -1,7 +1,10 @@
-<?php include_once __DIR__ . '/inc/Header.php' ?>
+<?php
+require_once __DIR__ . '/inc/bootstrap.php';
+require_once __DIR__ . '/inc/header.php';
+?>
     <h3 class="mt-4 mb-3">Book Appointment</h3>
     <hr/>
-    <form method="post" action="procedures/DoBooking.php">
+    <form method="post" action="procedures/doBooking.php">
         <div class="form-group row offset-md-3">
             <label for="appointmentDay" class="col-2 col-form-label">Pick a Day</label>
             <div class="col-10">
@@ -25,4 +28,4 @@
         </div>
         <button type="submit" class="btn btn-primary offset-md-8">Submit</button>
     </form>
-<?php include_once __DIR__ . '/inc/Footer.php' ?>
+<?php include_once __DIR__ . '/inc/footer.php' ?>
