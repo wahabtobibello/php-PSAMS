@@ -1,5 +1,5 @@
 <?php require_once __DIR__ . '/inc/Header.php' ?>
-<h3 class="mt-4 mb-3">Bookings</h3>
+    <h3 class="mt-4 mb-3">Bookings</h3>
     <hr/>
     <table class="table table-striped table-hover">
         <thead>
@@ -14,7 +14,7 @@
         <tbody>
         <tr>
             <td scope="row">John Doe
-            </th>
+            </td>
             <td>130805000</td>
             <td>Monday</td>
             <td>02:00pm</td>
@@ -27,7 +27,7 @@
                 </button>
             </td>
         </tr>
-        <?php include_once __DIR__ . '/inc/ComposeMessageModal.php'?>
+        <?php include_once __DIR__ . '/inc/ComposeMessageModal.php' ?>
         <div class="modal fade" id="cancelMessageModal" tabindex="-1" role="dialog" aria-labelledby="cancelMessage"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -65,5 +65,5 @@
         </div>
         </tbody>
 
-</table>
+    </table>
 <?php require_once __DIR__ . '/inc/Footer.php' ?>

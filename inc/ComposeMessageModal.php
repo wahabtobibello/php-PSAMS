@@ -8,8 +8,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form>
+            <form>
+                <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient" class="form-control-label">Recipient:</label>
                         <input type="text" class="form-control" id="recipient" value="John Doe <130805000>"
@@ -23,12 +23,12 @@
                         <label for="message-text" class="form-control-label">Message:</label>
                         <textarea class="form-control" id="message-text"></textarea>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
