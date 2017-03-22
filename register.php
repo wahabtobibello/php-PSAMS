@@ -1,7 +1,7 @@
-<?php require_once __DIR__ . '/inc/Header.php' ?>
+<?php require_once __DIR__ . '/inc/header.php' ?>
 <h3 class="mt-4 mb-3">Register</h3>
 <hr/>
-<form action="/procedures/DoRegister.php" method="post">
+<form action="/procedures/doRegister.php" method="post">
     <div class="form-group row offset-2">
         <label for="firstName" class="col-2 col-form-label">First Name</label>
         <div class="col-6">
@@ -44,4 +44,4 @@
         </div>
     </div>
 </form>
-<?php require_once __DIR__ . '/inc/Footer.php' ?>
+<?php require_once __DIR__ . '/inc/footer.php' ?>
