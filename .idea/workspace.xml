@@ -2,37 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48940fc2-bcae-40c4-960c-88d5d7816751" name="Default" comment="added feature &quot;View Schedule Page&quot;.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/initDb.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/procedures/doClearSchedule.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/viewAllStudents.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/BookAppointment.php" afterPath="$PROJECT_DIR$/bookAppointment.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ChangePassword.php" afterPath="$PROJECT_DIR$/changePassword.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Inbox.php" afterPath="$PROJECT_DIR$/inbox.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Login.php" afterPath="$PROJECT_DIR$/logIn.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/LoginAdmin.php" afterPath="$PROJECT_DIR$/logInAdmin.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Register.php" afterPath="$PROJECT_DIR$/register.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Sent.php" afterPath="$PROJECT_DIR$/sent.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ViewAppointment.php" afterPath="$PROJECT_DIR$/viewAppointment.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ViewProfile.php" afterPath="$PROJECT_DIR$/viewProfile.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ViewSchedule.php" afterPath="$PROJECT_DIR$/viewSchedule.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/inc/Bootstrap.php" afterPath="$PROJECT_DIR$/inc/bootstrap.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/inc/ComposeMessageModal.php" afterPath="$PROJECT_DIR$/inc/composeMessageModal.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/inc/Connection.php" afterPath="$PROJECT_DIR$/inc/connection.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/inc/EditScheduleModal.php" afterPath="$PROJECT_DIR$/inc/editScheduleModal.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/inc/Footer.php" afterPath="$PROJECT_DIR$/inc/footer.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/inc/Functions.php" afterPath="$PROJECT_DIR$/inc/functions.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/inc/Header.php" afterPath="$PROJECT_DIR$/inc/header.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/procedures/DoBooking.php" afterPath="$PROJECT_DIR$/procedures/doBooking.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/procedures/DoChangePassword.php" afterPath="$PROJECT_DIR$/procedures/doChangePassword.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/procedures/DoEditSchedule.php" afterPath="$PROJECT_DIR$/procedures/doEditSchedule.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/procedures/DoLogin.php" afterPath="$PROJECT_DIR$/procedures/doLogin.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/procedures/DoLogout.php" afterPath="$PROJECT_DIR$/procedures/doLogout.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/procedures/DoRegister.php" afterPath="$PROJECT_DIR$/procedures/doRegister.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bower.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/styles.css" afterPath="$PROJECT_DIR$/css/styles.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -128,8 +99,8 @@
       <file leaf-file-name="footer.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/inc/footer.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+            <state relative-caret-position="238">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -490,7 +461,7 @@
       <workItem from="1490150530750" duration="15648000" />
       <workItem from="1490183720077" duration="776000" />
       <workItem from="1490185137622" duration="2688000" />
-      <workItem from="1490199322613" duration="24245000" />
+      <workItem from="1490199322613" duration="25013000" />
     </task>
     <task id="LOCAL-00001" summary="UI redesign&#10;added inbox.html and outbox.html">
       <created>1489960121723</created>
@@ -538,15 +509,15 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74720000" />
+    <option name="totallyTimeSpent" value="75488000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="30" width="1370" height="745" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21526718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21526718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3236715" sideWeight="0.5030349" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -875,8 +846,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/inc/footer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
