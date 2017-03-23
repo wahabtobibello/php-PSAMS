@@ -4,6 +4,7 @@ $id = request()->get('id');
 $from = request()->get('from');
 $to = request()->get('to');
 $max = request()->get('maxApp');
+
 try {
     updateSchedule($id, $from, $to, $max);
     redirect("../viewSchedule.php");
