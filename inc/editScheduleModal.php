@@ -7,7 +7,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="procedures/doEditSchedule.php" method="get">
+            <form method="post" action="procedures/doEditSchedule.php">
                 <div class="modal-body">
                     <div class="form-group row hidden-xs-up">
                         <label for="id" class="col-2 col-form-label">ID</label>

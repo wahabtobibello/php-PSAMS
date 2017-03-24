@@ -11,7 +11,7 @@
     <div class="form-group row offset-2">
         <label for="password" class="col-2 col-form-label">Password</label>
         <div class="col-6">
-            <input class="form-control" type="password" value="hunter2" id="password" name="password">
+            <input class="form-control" type="password" id="password" name="password">
         </div>
     </div>
     <div class="form-group row">

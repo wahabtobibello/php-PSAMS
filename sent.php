@@ -1,4 +1,7 @@
-<?php require_once __DIR__ . '/inc/header.php' ?>
+<?php
+require_once __DIR__ . '/inc/bootstrap.php';
+requireAuth();
+require_once __DIR__ . '/inc/header.php' ?>
 <h3 class="mt-4 mb-3">Sent Messages</h3>
     <hr/>
     <table class="table table-striped table-hover">

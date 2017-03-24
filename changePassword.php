@@ -1,4 +1,7 @@
-<?php require_once __DIR__ . '/inc/header.php' ?>
+<?php
+require_once __DIR__ . '/inc/bootstrap.php';
+requireAuth();
+require_once __DIR__ . '/inc/header.php' ?>
     <h3 class="mt-4 mb-3">Change Password</h3>
     <hr/>
     <form action="/procedures/doChangePassword.php" method="post">

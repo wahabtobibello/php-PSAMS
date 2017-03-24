@@ -1,4 +1,7 @@
-<?php include_once __DIR__ . '/inc/header.php' ?>
+<?php
+require_once __DIR__ . '/inc/bootstrap.php';
+requireAuth();
+include_once __DIR__ . '/inc/header.php' ?>
     <h3 class="mt-4 mb-3">My Profile</h3>
     <hr/>
     <div class="media offset-md-2 mt-4">

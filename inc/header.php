@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . "/../inc/bootstrap.php";?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,8 +25,18 @@
         </button>
         <a class="navbar-brand" href=".">Project Supervision Appointment Management System
         </a>
+        <?php  echo request()->cookies->has('access_token'); ?>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
+                <?php
+                if(!isAuthenticated()){?>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logIn.php">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register.php">Register</a>
+                </li>
+                <?php } else { ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1"
                        data-toggle="dropdown" aria-haspopup="true"
@@ -61,6 +72,7 @@
                         <a class="dropdown-item" href="/procedures/doLogout.php">Log out</a>
                     </div>
                 </li>
+                <?php } ?>
             </ul>
         </div>
     </nav>

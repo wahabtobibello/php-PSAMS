@@ -1,7 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tobi.bello
- * Date: 22/03/2017
- * Time: 07:11 AM
- */
+require __DIR__ . "/../inc/bootstrap.php";
+
+$accessToken = new Symfony\Component\HttpFoundation\Cookie(
+    'access_token', 'Expired', time() - 3600, '/', getenv(COOKIE_DOMAIN));
+redirect("/login.php", ['cookies' => [$accessToken]]);
