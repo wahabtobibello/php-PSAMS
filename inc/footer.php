@@ -1,5 +1,5 @@
 </div>
-<footer class="">
+<footer class="footer">
     <div class="container">
         <span class="text-muted">&copy; Group 1</span>
     </div>

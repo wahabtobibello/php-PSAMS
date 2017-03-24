@@ -5,11 +5,10 @@ $from = request()->get('from');
 $to = request()->get('to');
 $max = request()->get('maxApp');
 
-echo "$id, $from, $to, $max";
-//try {
-//    updateSchedule($id, $from, $to, $max);
-//    redirect("../viewSchedule.php");
-//} catch (\Exception $e) {
-//    echo "Error Saving";
-//    echo $e;
-//}
+try {
+    updateSchedule($id, $from, $to, $max);
+    redirect("../viewSchedule.php");
+} catch (\Exception $e) {
+    echo "Error Saving";
+    echo $e;
+}

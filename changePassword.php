@@ -5,6 +5,8 @@ require_once __DIR__ . '/inc/header.php' ?>
     <h3 class="mt-4 mb-3">Change Password</h3>
     <hr/>
     <form action="/procedures/doChangePassword.php" method="post">
+        <?php echo displayErrors();
+        echo displaySuccess();?>
         <div class="form-group row">
             <label for="oldPassword" class="col-md-2 offset-md-2 col-form-label">Old Password:</label>
             <div class="col-6">
@@ -18,9 +20,9 @@ require_once __DIR__ . '/inc/header.php' ?>
             </div>
         </div>
         <div class="form-group row">
-            <label for="rNewPassword" class="col-md-2 offset-md-2 col-form-label">Re-enter Password:</label>
+            <label for="confirmPassword" class="col-md-2 offset-md-2 col-form-label">Re-enter Password:</label>
             <div class="col-6">
-                <input class="form-control" type="password" id="rNewPassword">
+                <input class="form-control" type="password" id="confirmPassword" name="confirmPassword">
             </div>
         </div>
         <div class="form-group row">

@@ -3,8 +3,9 @@
 <hr/>
 
 <form action="/procedures/doAdminLogIn.php" method="post">
+    <?php echo displayErrors();?>
     <div class="form-group row offset-2">
-        <label for="password" class="col-2 col-form-label ">Password</label>
+        <label for="password" class="col-2 col-form-label ">Enter Password</label>
         <div class="col-6">
             <input class="form-control" type="password" id="password" name="password">
         </div>

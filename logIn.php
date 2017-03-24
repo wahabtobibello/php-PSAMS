@@ -2,6 +2,7 @@
 <h3 class="mt-4 mb-3">Log In</h3>
 <hr/>
 <form action="/procedures/doLogin.php" method="post">
+    <?php echo displayErrors();?>
     <div class="form-group row offset-2">
         <label for="matricNo" class="col-2 col-form-label">Matric No.</label>
         <div class="col-6">

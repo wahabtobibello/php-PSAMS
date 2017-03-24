@@ -3,8 +3,7 @@
 /**
  * @return \Symfony\Component\HttpFoundation\Request
  */
-function
-request()
+function request()
 {
     return \Symfony\Component\HttpFoundation\Request::createFromGlobals();
 }
@@ -21,6 +20,22 @@ function redirect($path, $extra = [])
     }
     $response->send();
     exit;
+}
+
+function decodeJwt($prop = null)
+{
+    \Firebase\JWT\JWT::$leeway = 1;
+    $jwt = \Firebase\JWT\JWT::decode(
+        request()->cookies->get('access_token'),
+        getenv('SECRET_KEY'),
+        ['HS256']
+    );
+
+    if ($prop === null) {
+        return $jwt;
+    }
+
+    return $jwt->{$prop};
 }
 
 function getDailySchedule()
@@ -88,13 +103,38 @@ function getAllAppointments()
     }
 }
 
+function findUserByAccessToken()
+{
+    global $db;
+
+    try {
+        $userId = decodeJwt('sub');
+    } catch (\Exception $e) {
+        throw $e;
+    }
+    echo $userId;
+    try {
+        $query = "SELECT * 
+                  FROM user_t
+                  WHERE id = :userId";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':userId', $userId);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
 function findStudentByMatricNo($matricNo)
 {
     global $db;
     try {
         $query = "SELECT * 
                   FROM student_t
-                  WHERE matric_number = :matricNo";
+                  JOIN user_t ON student_t.id = user_t.id
+                  WHERE student_t.matric_number = :matricNo";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':matricNo', $matricNo, PDO::PARAM_INT);
         $stmt->execute();
@@ -109,7 +149,8 @@ function getAdminDetails($staffNumber)
     global $db;
     try {
         $query = "SELECT * 
-                  FROM supervisor_t
+                  FROM user_t
+                  JOIN supervisor_t ON supervisor_t.id = user_t.id
                   WHERE staff_number = :staffNumber";
         $stmt = $db->prepare($query);
         $stmt->bindParam(':staffNumber', $staffNumber, PDO::PARAM_INT);
@@ -124,15 +165,21 @@ function createStudentUser($firstName, $lastName, $project, $matricNo, $password
 {
     global $db;
     try {
-        $query = "INSERT INTO student_t
-                  (matric_number, first_name, last_name, user_password, staff_number, project)
+        $query = "INSERT INTO user_t
+                  (first_name,	last_name,	user_password)
                   VALUES
-                  (:matricNo, :firstName, :lastName, :userPassword, 123456789, :project)";
+                  (:firstName, :lastName,:userPassword)";
         $stmt = $db->prepare($query);
-        $stmt->bindParam(':matricNo', $matricNo, PDO::PARAM_INT);
         $stmt->bindParam(':firstName', $firstName);
         $stmt->bindParam(':lastName', $lastName);
         $stmt->bindParam(':userPassword', $password);
+        $stmt->execute();
+        $query = "INSERT INTO student_t
+                  (matric_number, staff_number, project, id)
+                  VALUES
+                  (:matricNo, 123456789, :project, LAST_INSERT_ID())";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':matricNo', $matricNo, PDO::PARAM_INT);
         $stmt->bindParam(':project', $project);
         $stmt->execute();
         return findStudentByMatricNo($matricNo);
@@ -141,18 +188,29 @@ function createStudentUser($firstName, $lastName, $project, $matricNo, $password
     }
 }
 
+function updatePassword($password, $userId) {
+    global $db;
+
+    try {
+        $query = 'UPDATE user_t SET user_password=:password WHERE id = :userId';
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':userId', $userId);
+        $stmt->execute();
+    } catch (\Exception $e) {
+        return false;
+    }
+
+    return true;
+}
+
 function isAuthenticated()
 {
     if (!request()->cookies->has("access_token")) {
         return false;
     }
     try {
-        \Firebase\JWT\JWT::$leeway = 1;
-        \Firebase\JWT\JWT::decode(
-            request()->cookies->get('access_token'),
-            getenv('SECRET_KEY'),
-            ['HS256']
-        );
+        decodeJwt();
         return true;
     } catch (\Exception $e) {
         return false;
@@ -166,4 +224,90 @@ function requireAuth()
             'access_token', 'Expired', time() - 3600, '/', getenv(COOKIE_DOMAIN));
         redirect("/login.php", ['cookies' => [$accessToken]]);
     }
+}
+
+function requireSupervisor() {
+    global $session;
+    if(!isAuthenticated()) {
+        $accessToken = new \Symfony\Component\HttpFoundation\Cookie("access_token", "Expired", time()-3600, '/', getenv('COOKIE_DOMAIN'));
+        redirect('/login.php', ['cookies' => [$accessToken]]);
+    }
+
+    try {
+        if (!decodeJwt('is_admin')) {
+            $session->getFlashBag()->add('error', 'Not Authorized');
+            redirect('/');
+        }
+    } catch (\Exception $e) {
+        $accessToken = new \Symfony\Component\HttpFoundation\Cookie("access_token", "Expired", time()-3600, '/', getenv('COOKIE_DOMAIN'));
+        redirect('/login.php', ['cookies' => [$accessToken]]);
+    }
+}
+
+function requireStudent() {
+    global $session;
+    if(!isAuthenticated()) {
+        $accessToken = new \Symfony\Component\HttpFoundation\Cookie("access_token", "Expired", time()-3600, '/', getenv('COOKIE_DOMAIN'));
+        redirect('/login.php', ['cookies' => [$accessToken]]);
+    }
+
+    try {
+        if (decodeJwt('is_admin')) {
+            $session->getFlashBag()->add('error', 'Not Authorized');
+            redirect('/');
+        }
+    } catch (\Exception $e) {
+        $accessToken = new \Symfony\Component\HttpFoundation\Cookie("access_token", "Expired", time()-3600, '/', getenv('COOKIE_DOMAIN'));
+        redirect('/login.php', ['cookies' => [$accessToken]]);
+    }
+}
+
+function isSupervisor() {
+    if (!isAuthenticated()) {
+        return false;
+    }
+
+    try {
+        $isAdmin = decodeJwt('is_admin');
+    } catch (\Exception $e) {
+        return false;
+    }
+
+    return (boolean)$isAdmin;
+}
+
+function displayErrors()
+{
+    global $session;
+
+    if (!$session->getFlashBag()->has('error')) {
+        return;
+    }
+    $messages = $session->getFlashBag()->get('error');
+
+    $response = "<div class='alert alert-danger alert-dismissable'>";
+    foreach ($messages as $message) {
+        $response .= "{$message}<br/>";
+    }
+    $response .= "</div>";
+
+    return $response;
+}
+
+function displaySuccess()
+{
+    global $session;
+
+    if (!$session->getFlashBag()->has('success')) {
+        return;
+    }
+    $messages = $session->getFlashBag()->get('success');
+
+    $response = "<div class='alert alert-success alert-dismissable'>";
+    foreach ($messages as $message) {
+        $response .= "{$message}<br/>";
+    }
+    $response .= "</div>";
+
+    return $response;
 }

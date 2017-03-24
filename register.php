@@ -3,6 +3,7 @@
 <h3 class="mt-4 mb-3">Register</h3>
 <hr/>
 <form method="post" action="procedures/doRegister.php">
+    <?php echo displayErrors();?>
     <div class="form-group row offset-2">
         <label for="firstName" class="col-2 col-form-label">First Name</label>
         <div class="col-6">

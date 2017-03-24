@@ -9,10 +9,12 @@ $password = request()->request->get('password');
 $confirmPassword = request()->request->get('confirmPassword');
 
 if($password != $confirmPassword){
+    $session->getFlashBag()->add('error', "Passwords do not match");
     redirect('../register.php');
 }
 $user = findStudentByMatricNo($matricNo);
-if(empty($user)){
+if(!empty($user)){
+    $session->getFlashBag()->add('error', "Matric Number already exists");
     redirect('../register.php');
 }
 
@@ -24,7 +26,7 @@ $expTime = time() + 3600;
 
 $jwt = \Firebase\JWT\JWT::encode([
     'iss' => request()->getBaseUrl(),
-    'sub' => "{$user['matric_number']}",
+    'sub' => "{$user['id']}",
     'exp' => $expTime,
     'iat' => time(),
     'nbf' => time(),

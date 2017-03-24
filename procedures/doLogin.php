@@ -4,12 +4,12 @@ require __DIR__ . "/../inc/bootstrap.php";
 $user = findStudentByMatricNo(request()->request->get('matricNo'));
 
 if (empty($user)) {
-    echo "bad user";
+    $session->getFlashBag()->add('error', "Matriculation number was not found");
     redirect('../login.php');
 }
 
 if (!password_verify(request()->request->get('password'), $user['user_password'])) {
-    echo "bad password";
+    $session->getFlashBag()->add('error', "Invalid password");
     redirect('../login.php');
 }
 
@@ -17,7 +17,7 @@ $expTime = time() + 3600;
 
 $jwt = \Firebase\JWT\JWT::encode([
     'iss' => request()->getBaseUrl(),
-    'sub' => "{$user['matric_number']}",
+    'sub' => "{$user['id']}",
     'exp' => $expTime,
     'iat' => time(),
     'nbf' => time(),
@@ -27,4 +27,5 @@ $jwt = \Firebase\JWT\JWT::encode([
 $accessToken = new Symfony\Component\HttpFoundation\Cookie(
     "access_token", $jwt, $expTime, '/', getenv("COOKIE_DOMAIN"));
 
+$session->getFlashBag()->add('success', "Logged In");
 redirect("/", ['cookies' => [$accessToken]]);
