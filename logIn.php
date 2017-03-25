@@ -12,7 +12,8 @@
     <div class="form-group row offset-2">
         <label for="password" class="col-2 col-form-label">Password</label>
         <div class="col-6">
-            <input class="form-control" type="password" id="password" name="password">
+            <input class="form-control mb-3" type="password" id="password" name="password">
+            Log in as <a href="/logInAdmin.php">supervisor</a>
         </div>
     </div>
     <div class="form-group row">
