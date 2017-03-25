@@ -1,4 +1,6 @@
-<?php require_once __DIR__ . '/inc/header.php' ?>
+<?php
+require_once __DIR__ . '/inc/header.php';
+requireNotAuth();?>
 <h3 class="mt-4 mb-3">Log In</h3>
 <hr/>
 <form action="/procedures/doLogin.php" method="post">

@@ -1,5 +1,7 @@
-<?php require_once __DIR__ . '/inc/bootstrap.php' ?>
-<?php require_once __DIR__ . '/inc/header.php' ?>
+<?php
+require_once __DIR__ . '/inc/bootstrap.php';
+require_once __DIR__ . '/inc/header.php';
+requireNotAuth();?>
 <h3 class="mt-4 mb-3">Register</h3>
 <hr/>
 <form method="post" action="procedures/doRegister.php">

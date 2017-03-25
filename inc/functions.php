@@ -226,6 +226,15 @@ function requireAuth()
     }
 }
 
+function requireNotAuth()
+{
+    global $session;
+    if (isAuthenticated()) {
+        $session->getFlashBag()->add('info', 'Log out first');
+        redirect("/index.php");
+    }
+}
+
 function requireSupervisor() {
     global $session;
     if(!isAuthenticated()) {
@@ -285,7 +294,7 @@ function displayErrors()
     }
     $messages = $session->getFlashBag()->get('error');
 
-    $response = "<div class='alert alert-danger alert-dismissable'>";
+    $response = "<div class='alert alert-danger alert-dismissible'>";
     foreach ($messages as $message) {
         $response .= "{$message}<br/>";
     }
@@ -303,7 +312,25 @@ function displaySuccess()
     }
     $messages = $session->getFlashBag()->get('success');
 
-    $response = "<div class='alert alert-success alert-dismissable'>";
+    $response = "<div class='alert alert-success alert-dismissible'>";
+    foreach ($messages as $message) {
+        $response .= "{$message}<br/>";
+    }
+    $response .= "</div>";
+
+    return $response;
+}
+
+function displayInfo()
+{
+    global $session;
+
+    if (!$session->getFlashBag()->has('info')) {
+        return;
+    }
+    $messages = $session->getFlashBag()->get('info');
+
+    $response = "<div class='alert alert-info alert-dismissible'>";
     foreach ($messages as $message) {
         $response .= "{$message}<br/>";
     }
