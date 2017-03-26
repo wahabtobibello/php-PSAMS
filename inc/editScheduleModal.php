@@ -7,8 +7,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="procedures/doEditSchedule.php?id=<?php echo $id . "&sn=".$user['user_number']?>">
+            <form method="post" action="procedures/doEditSchedule.php?sn=<?php echo $user['user_number']?>">
                 <div class="modal-body">
+                    <div class="form-group row hidden-xs-up">
+                        <label for="id" class="col-2 col-form-label">ID</label>
+                        <div class="col-10">
+                            <input class="form-control" type="number" min="0" id="id" name="id">
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label for="from" class="col-2 col-form-label">From</label>
                         <div class="col-10">

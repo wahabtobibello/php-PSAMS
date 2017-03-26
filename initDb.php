@@ -1,4 +1,5 @@
-<?php require_once __DIR__ . '/inc/connection.php';
+<?php
+require_once __DIR__ . '/inc/connection.php';
 $password = password_hash("nutella",PASSWORD_DEFAULT);
 $stmt = $db->prepare("INSERT INTO user_t
                       (user_number, first_name,	last_name,	user_password)
