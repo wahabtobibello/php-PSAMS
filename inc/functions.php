@@ -211,6 +211,40 @@ function updatePassword($password, $userId)
     return true;
 }
 
+function numberOfSlotsLeftOnDate($datetime)
+{
+    global $db;
+    try {
+        $query = "SELECT schedule_t.appointment_max - COUNT(*) AS noOfAppoints
+                  FROM appointment_t
+                  JOIN schedule_t ON DAYOFWEEK('2017-05-01') = schedule_t.day_id
+                  WHERE CAST(appointment_t.appointment_time AS DATE) = CAST(:datetime AS DATE)";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(":datetime", $datetime);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
+function insertAppointment($dayId, $matricNo, $datetime, $staffNumber)
+{
+    global $db;
+    try {
+        $query = "INSERT INTO appointment_t (day_id, matric_number, appointment_time, staff_number)
+                  VALUES
+                  (:dayId, :matricNo, :datetime, :staffNumber)";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':dayId', $dayId);
+        $stmt->bindParam(':matricNo', $matricNo);
+        $stmt->bindParam(':datetime', $datetime);
+        $stmt->bindParam(':staffNumber', $staffNumber);
+        return $stmt->execute();
+    } catch (Exception $e) {
+        throw $e;
+    }
+}
 
 function isAuthenticated()
 {
@@ -348,48 +382,5 @@ function displayInfo()
     $response .= "</div>";
 
     return $response;
-}
-
-function landingPage()
-{
-    if (isSupervisor()) {
-        redirect("/viewSchedule.php");
-    } else {
-        $supervisor = findUser(findUser()['staff_number']);
-//        var_dump($supervisor);
-        echo "<h5 class='mb-3'>" . $supervisor['title'] . " " . $supervisor['first_name'] . " "
-                    . $supervisor['last_name'] . "'s schedule </h5>";
-        echo "<table class='table table-striped table-hover' >
-        <thead >
-        <tr >
-            <th > Day</th >
-            <th > From</th >
-            <th > To</th >
-            <th > Max . number of appointments </th >
-        </tr >
-        </thead >
-        <tbody >";
-        foreach (getDailySchedule($supervisor['staff_number']) as $item) {
-            $id = $item['day_id'];
-            $day = $item['day'];
-            $from = $item['from_time'];
-            $to = $item['to_time'];
-            $max = $item['appointment_max'];
-            echo "<tr>";
-            echo "<th scope=\"row\">" . $day . "</th>";
-            echo "<td>" . $from . "</td>";
-            echo "<td>" . $to . "</td>";
-            echo "<td>" . $max . "</td>";
-            echo "
-            <td>
-                <button type='button' class='btn btn-primary'
-                data-day='" . $day . "' data-id='" . $id . "' data-from='" . $from
-                . "' data-to='" . $to . "' data-max=" . $max . "
-                >Book Appointment</button>
-            </td>";
-            echo "</tr>";
-        }
-        echo "</tbody></table>";
-    }
 }
 
