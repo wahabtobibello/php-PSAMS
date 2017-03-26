@@ -17,7 +17,7 @@ $expTime = time() + 3600;
 
 $jwt = \Firebase\JWT\JWT::encode([
     'iss' => request()->getBaseUrl(),
-    'sub' => "{$user['id']}",
+    'sub' => "{$user['user_number']}",
     'exp' => $expTime,
     'iat' => time(),
     'nbf' => time(),

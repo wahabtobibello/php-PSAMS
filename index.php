@@ -7,5 +7,5 @@ require_once __DIR__ . '/inc/header.php' ?>
 <?php echo displayErrors() ?>
 <?php echo displaySuccess() ?>
 <?php echo displayInfo() ?>
-
+<?php landingPage()?>
 <?php require_once __DIR__ . '/inc/footer.php' ?>

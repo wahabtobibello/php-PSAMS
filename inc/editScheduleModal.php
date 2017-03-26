@@ -7,24 +7,18 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="procedures/doEditSchedule.php">
+            <form method="post" action="procedures/doEditSchedule.php?id=<?php echo $id . "&sn=".$user['user_number']?>">
                 <div class="modal-body">
-                    <div class="form-group row hidden-xs-up">
-                        <label for="id" class="col-2 col-form-label">ID</label>
+                    <div class="form-group row">
+                        <label for="from" class="col-2 col-form-label">From</label>
                         <div class="col-10">
-                            <input class="form-control" type="number" min="0" id="id" name="id">
+                            <input class="form-control" type="time" id="from" name="from" min="08:00:00" max="18:00:00">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="from" class="col-2 col-form-label">Time</label>
+                        <label for="to" class="col-2 col-form-label">To</label>
                         <div class="col-10">
-                            <input class="form-control" type="time" id="from" name="from">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="to" class="col-2 col-form-label">Time</label>
-                        <div class="col-10">
-                            <input class="form-control" type="time" id="to" name="to">
+                            <input class="form-control" type="time" id="to" name="to" min="08:00:00" max="18:00:00">
                         </div>
                     </div>
                     <div class="form-group row">

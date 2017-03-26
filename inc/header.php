@@ -25,7 +25,6 @@
         </button>
         <a class="navbar-brand" href=".">Project Supervision Appointment Management System
         </a>
-        <?php echo request()->cookies->has('access_token'); ?>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
                 <?php
@@ -38,6 +37,7 @@
                         <a class="nav-link" href="/register.php">Register</a>
                     </li>
                 <?php } else {
+                    $user = findUser();
                     if (isSupervisor()) {
                         ?>
                         <li class="nav-item dropdown">
@@ -53,11 +53,11 @@
                         </li>
                     <?php } else { ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/bookAppointment.php">Book Appointment</a>
+                            <a class="nav-link" href="/index.php">Dashboard</a>
                         </li>
                     <?php } ?>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink3"
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3"
                            data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false">
                             Messages

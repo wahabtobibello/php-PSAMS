@@ -1,13 +1,13 @@
 <?php require_once __DIR__ . '/inc/connection.php';
 $password = password_hash("nutella",PASSWORD_DEFAULT);
 $stmt = $db->prepare("INSERT INTO user_t
-                      (first_name,	last_name,	user_password)
+                      (user_number, first_name,	last_name,	user_password)
                       VALUES
-                      ('Albert', 'Einstein', ?);
+                      (123456789, 'Albert', 'Einstein', ?);
                       INSERT INTO supervisor_t
-                      (staff_number,	title_id,	end_date, id)
+                      (staff_number,	title_id,	end_date)
                       VALUES
-                      (123456789, 2, DATE_ADD(CURRENT_DATE ,INTERVAL 2 MONTH),LAST_INSERT_ID());");
+                      (123456789, 2, DATE_ADD(CURRENT_DATE ,INTERVAL 2 MONTH));");
 $stmt->bindParam(1,$password,PDO::PARAM_STR);
 $stmt->execute();
 

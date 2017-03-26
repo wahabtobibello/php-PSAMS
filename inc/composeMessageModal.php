@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form>
+            <form method="post" action="../procedures/sendMessage.php">
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient" class="form-control-label">Recipient:</label>
