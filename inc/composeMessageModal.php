@@ -13,12 +13,13 @@
                     <div class="form-group">
                         <label for="recipient" class="form-control-label">Recipient:</label>
                         <input type="text" class="form-control" id="recipient" value="John Doe <130805000>"
-                               name="recipient" disabled>
+                               name="recipient" readonly>
                     </div>
                     <div class="form-group">
                         <label for="subject" class="form-control-label">Subject:</label>
                         <input type="text" class="form-control" id="subject" name="subject">
                     </div>
+                    <input type="datetime" class="form-control hidden-xs-up" id="time" name="time" value="">
                     <div class="form-group">
                         <label for="message-text" class="form-control-label">Message:</label>
                         <textarea class="form-control" id="messageText" name="messageText"></textarea>

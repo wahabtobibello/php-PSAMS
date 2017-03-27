@@ -47,8 +47,8 @@
                                 Dashboard
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-                                <a class="dropdown-item" href="ViewSchedule.php">Schedule</a>
-                                <a class="dropdown-item" href="ViewAppointment.php">Appointments</a>
+                                <a class="dropdown-item" href="/viewSchedule.php">Schedule</a>
+                                <a class="dropdown-item" href="/viewAppointment.php">Appointments</a>
                             </div>
                         </li>
                     <?php } else { ?>
@@ -63,8 +63,8 @@
                             Messages
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink3">
-                            <a class="dropdown-item" href="Inbox.php">Inbox</a>
-                            <a class="dropdown-item" href="Sent.php">Sent</a>
+                            <a class="dropdown-item" href="/inbox.php">Inbox</a>
+                            <a class="dropdown-item" href="/sent.php">Sent</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">

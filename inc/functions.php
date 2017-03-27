@@ -37,6 +37,60 @@ function decodeJwt($prop = null)
     return $jwt->{$prop};
 }
 
+function postMessage($senderId, $recipientId, $subject, $message){
+    global $db;
+    try{
+        $query="INSERT INTO message_t
+                (subject, text_message, sender_id, recipient_id)
+                VALUES
+                (:subject, :text, :senderId, :recipientId)";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(":subject", $subject);
+        $stmt->bindParam(":text", $message);
+        $stmt->bindParam(":senderId", $senderId);
+        $stmt->bindParam(":recipientId", $recipientId);
+        return $stmt->execute();
+    }catch(\Exception $e){
+        throw $e;
+    }
+}
+
+function getInbox(){
+    $user = findUser();
+    global $db;
+
+    try{
+        $query = "SELECT *
+                  FROM message_t
+                  JOIN user_t ON sender_id = user_number
+                  WHERE recipient_id = :myId";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':myId', $user['user_number']);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }catch(\Exception $e){
+        throw $e;
+    }
+}
+
+function getSentMessages(){
+    $user = findUser();
+    global $db;
+
+    try{
+        $query = "SELECT *
+                  FROM message_t
+                  JOIN user_t ON recipient_id = user_number
+                  WHERE sender_id = :myId";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':myId', $user['user_number']);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }catch(\Exception $e){
+        throw $e;
+    }
+}
+
 function getDailySchedule($staffNumber)
 {
     global $db;
@@ -243,6 +297,21 @@ function insertAppointment($dayId, $matricNo, $datetime, $staffNumber)
         $stmt->bindParam(':matricNo', $matricNo);
         $stmt->bindParam(':datetime', $datetime);
         $stmt->bindParam(':staffNumber', $staffNumber);
+        return $stmt->execute();
+    } catch (Exception $e) {
+        throw $e;
+    }
+}
+
+function deleteAppointment($matricNumber, $time)
+{
+    global $db;
+    try {
+        $query = "DELETE FROM appointment_t
+                  WHERE matric_number=? AND appointment_time=?";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(1, $matricNumber);
+        $stmt->bindParam(2, $time);
         return $stmt->execute();
     } catch (Exception $e) {
         throw $e;
