@@ -16,22 +16,32 @@ require_once __DIR__ . '/inc/header.php' ?>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td scope="row">John Doe
-            </td>
-            <td>130805000</td>
-            <td>Monday</td>
-            <td>02:00pm</td>
+        <?php foreach (getAppointments($user['user_number']) as $item) {
+            $time = $item['appointment_time'];
+            $day = $item['day'];
+            $fullName = $item['full_name'];
+            $matricNo = $item['matric_number'];
+            echo "<tr>";
+            echo "<th scope='row'>" . $fullName . "</th>";
+            echo "<td>" . $matricNo . "</td>";
+            echo "<td>" . $day . "</td>";
+            echo "<td>" . $time . "</td>";
+            echo "
             <td>
-                <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#compose" data-type="compose">
-                    Message
-                </button>
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#compose" data-type="cancel">
-                    Cancel
-                </button>
-            </td>
-        </tr>
-        <?php include_once __DIR__ . '/inc/composeMessageModal.php' ?>
+                <button type ='button' class='btn btn-outline-info' data-toggle = 'modal' data-target = '#compose' data-type = 'compose' 
+                data-recipient='".$matricNo."'>
+        Message
+                </button >
+                <button type='button' class='btn btn-danger' data-toggle = 'modal' data-target = '#compose' data-type = 'cancel'>
+        Cancel
+                </button >
+            </td>";
+            echo "</tr>";
+        };
+        include_once __DIR__ . '/inc/composeMessageModal.php'; ?>
         </tbody>
     </table>
-<?php require_once __DIR__ . '/inc/footer.php' ?>
+
+<?php
+require __DIR__ . '/inc/footer.php';
+?>

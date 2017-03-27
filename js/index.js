@@ -16,8 +16,12 @@ $('#editSchedule').on('show.bs.modal', function (event) {
 $('#compose').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var type = button.data('type');
+    var recipient = button.data('recipient');
     var modal = $(this);
-    if(type=='cancel'){
+    if(type==='cancel'){
         modal.find('.modal-body input[name=subject]').attr('value','Cancelled Appointment').attr('disabled',true);
+    }else{
+        modal.find('.modal-body input[name=subject]').attr('value','').attr('disabled',false);
     }
+    modal.find('.modal-body input[name=recipient]').attr('value',recipient);
 });

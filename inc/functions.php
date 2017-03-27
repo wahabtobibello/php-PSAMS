@@ -55,6 +55,25 @@ function getDailySchedule($staffNumber)
     }
 }
 
+function getAppointments($staffNumber)
+{
+    global $db;
+    try {
+        $query = "SELECT `day`, appointment_time, appointment_t.matric_number, CONCAT(first_name,' ',last_name) AS full_name
+                  FROM appointment_t
+                  JOIN day_t ON day_t.day_id = appointment_t.day_id
+                  JOIN user_t ON user_t.user_number = appointment_t.matric_number
+                  ORDER BY appointment_time;
+                  WHERE staff_number = :staffNumber";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':staffNumber', $staffNumber);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
 function clearSchedule($id, $staffNumber)
 {
     global $db;
@@ -85,22 +104,6 @@ function updateSchedule($id, $from, $to, $max, $staffNumber)
         $stmt->bindParam(4, $id);
         $stmt->bindParam(5, $staffNumber);
         return $stmt->execute();
-    } catch (\Exception $e) {
-        throw $e;
-    }
-}
-
-function getAllAppointments()
-{
-    global $db;
-    try {
-        $query = "SELECT day_t.day_id AS day_id, day, from_time, to_time, appointment_max
-              FROM day_t
-              LEFT OUTER JOIN schedule_t ON day_t.day_id = schedule_t.day_id
-              ORDER BY day_id;";
-        $stmt = $db->prepare($query);
-        $stmt->execute();
-        return $stmt->fetchAll();
     } catch (\Exception $e) {
         throw $e;
     }
