@@ -7,7 +7,7 @@ require_once __DIR__ . '/inc/header.php' ?>
 <?php
 foreach (getAllStudents() as $student) {
     if (empty($student['profile_picture'])) {
-        $picture = 'http://placehold.it/320x320';
+        $picture = 'http://placehold.it/120x120';
     } else {
         $picture = $student['profile_picture'];
     }

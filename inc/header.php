@@ -36,26 +36,27 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/register.php">Register</a>
                     </li>
-                <?php } else {
-                    $user = findUser();
-                    if (isSupervisor()) {
-                        ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1"
-                               data-toggle="dropdown" aria-haspopup="true"
-                               aria-expanded="false">
-                                Dashboard
-                            </a>
+                <?php } else { ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1"
+                           data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            Dashboard
+                        </a>
+                        <?php $user = findUser();
+                        if (isSupervisor()) {
+                            ?>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
                                 <a class="dropdown-item" href="/viewSchedule.php">Schedule</a>
                                 <a class="dropdown-item" href="/viewAppointment.php">Appointments</a>
                             </div>
-                        </li>
-                    <?php } else { ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/index.php">Dashboard</a>
-                        </li>
-                    <?php } ?>
+                        <?php } else { ?>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+                                <a class="dropdown-item" href="/index.php">Book Appointment</a>
+                                <a class="dropdown-item" href="#">My Appointments</a>
+                            </div>
+                        <?php } ?>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3"
                            data-toggle="dropdown" aria-haspopup="true"
@@ -76,7 +77,8 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
                             <?php if (!isSupervisor()) { ?>
                                 <a class="dropdown-item"
-                                   href="/viewProfile.php"><?php echo $user['first_name'] . " " . $user['last_name'];?><br/><span
+                                   href="/viewProfile.php"><?php echo $user['first_name'] . " " . $user['last_name']; ?>
+                                    <br/><span
                                             style="font-size: small;">View profile</span></a>
                                 <hr class="my-0"/>
                             <?php } else { ?>
