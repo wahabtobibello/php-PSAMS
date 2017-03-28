@@ -209,6 +209,20 @@ function findStudentByMatricNo($matricNo)
     }
 }
 
+function getAllStudents(){
+    global $db;
+    try {
+        $query = "SELECT * 
+                  FROM student_t
+                  JOIN user_t ON student_t.matric_number = user_t.user_number";
+        $stmt = $db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
 function getAdminDetails($staffNumber)
 {
     global $db;
