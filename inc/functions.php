@@ -323,12 +323,13 @@ function updatePassword($password, $userId)
 
 function numberOfSlotsLeftOnDate($datetime)
 {
+//    echo $datetime;
     global $db;
     try {
-        $query = "SELECT schedule_t.appointment_max - COUNT(*) AS noOfAppoints
-                  FROM appointment_t
-                  JOIN schedule_t ON DAYOFWEEK('2017-05-01') = schedule_t.day_id
-                  WHERE CAST(appointment_t.appointment_time AS DATE) = CAST(:datetime AS DATE)";
+        $query = "SELECT schedule_t.appointment_max - COUNT(*)
+                  FROM schedule_t
+                  JOIN appointment_t ON DAYOFWEEK(:datetime) = schedule_t.day_id
+                  WHERE CAST(appointment_t.appointment_time AS DATE) = :datetime";
         $stmt = $db->prepare($query);
         $stmt->bindParam(":datetime", $datetime);
         $stmt->execute();

@@ -15,6 +15,7 @@ echo displayInfo(); ?>
             $lastName = $item['last_name'];
             $senderId = $item['user_number'];
             $subject = $item['subject'];
+            $text=$item['text_message'];
             $sentOn = $item['send_time'];
             echo "<tr></tr><td scope='row'> $firstName $lastName &lt;$senderId&gt; </td>";
             echo "<td>$subject</td>";

@@ -8,14 +8,13 @@ $day = request()->get('day');
 $from = request()->get('from');
 $to = request()->get('to');
 $endDate = strtotime(request()->get('endDate'));
-$nextDate = date('d-M-Y', strtotime("next $day"));
+$nextDate = date('y-m-d', strtotime("next $day"));
 $dates = [];
 while ($endDate > strtotime($nextDate)) {
-//    var_dump(numberOfSlotsLeftOnDate($nextDate));
     if (numberOfSlotsLeftOnDate($nextDate) > 0) {
-        $dates[] = $nextDate;
+        $dates[] = date('d-M-Y', strtotime("$nextDate"));
     }
-    $nextDate = date('d-M-Y', strtotime("$nextDate + 7 days"));
+    $nextDate = date('y-m-d', strtotime("$nextDate + 7 days"));
 }
 ?>
     <h3 class="mt-4 mb-3">Book Appointment</h3>
