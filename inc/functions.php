@@ -131,6 +131,42 @@ function getAppointments($staffNumber)
     }
 }
 
+function getMyAppointments($matric)
+{
+    global $db;
+    try {
+        $query = "SELECT appointment_id, `day`, appointment_time
+                  FROM appointment_t
+                  JOIN day_t ON day_t.day_id = appointment_t.day_id
+                  ORDER BY appointment_time;
+                  WHERE matric_number = :matric";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':matric', $matric);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
+function getAppointment($id)
+{
+    global $db;
+    try {
+        $query = "SELECT appointment_id, `day`, appointment_time
+                  FROM appointment_t
+                  JOIN day_t ON day_t.day_id = appointment_t.day_id
+                  ORDER BY appointment_time;
+                  WHERE matric_number = :matric";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':matric', $matric);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
 function clearSchedule($id, $staffNumber)
 {
     global $db;
@@ -320,15 +356,14 @@ function insertAppointment($dayId, $matricNo, $datetime, $staffNumber)
     }
 }
 
-function deleteAppointment($matricNumber, $time)
+function deleteAppointment($id)
 {
     global $db;
     try {
         $query = "DELETE FROM appointment_t
-                  WHERE matric_number=? AND appointment_time=?";
+                  WHERE appointment_id=?";
         $stmt = $db->prepare($query);
-        $stmt->bindParam(1, $matricNumber);
-        $stmt->bindParam(2, $time);
+        $stmt->bindParam(1, $id);
         return $stmt->execute();
     } catch (Exception $e) {
         throw $e;
@@ -456,7 +491,7 @@ function displayErrors()
     }
     $messages = $session->getFlashBag()->get('error');
 
-    $response = " < div class='alert alert-danger alert-dismissible' > ";
+    $response = "<div class='alert alert-danger alert-dismissible' > ";
     foreach ($messages as $message) {
         $response .= "
             $message<br />";

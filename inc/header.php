@@ -53,7 +53,7 @@
                         <?php } else { ?>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
                                 <a class="dropdown-item" href="/index.php">Book Appointment</a>
-                                <a class="dropdown-item" href="#">My Appointments</a>
+                                <a class="dropdown-item" href="/viewStudAppointments.php">My Appointments</a>
                             </div>
                         <?php } ?>
                     </li>
