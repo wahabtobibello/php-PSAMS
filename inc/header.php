@@ -75,7 +75,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
                             <?php if (!isSupervisor()) { ?>
-                                <a class="dropdown-item" href="#">John Doe<br/><span
+                                <a class="dropdown-item"
+                                   href="/viewProfile.php"><?php echo $user['first_name'] . " " . $user['last_name'];?><br/><span
                                             style="font-size: small;">View profile</span></a>
                                 <hr class="my-0"/>
                             <?php } else { ?>

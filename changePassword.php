@@ -6,7 +6,8 @@ require_once __DIR__ . '/inc/header.php' ?>
     <hr/>
     <form action="/procedures/doChangePassword.php" method="post">
         <?php echo displayErrors();
-        echo displaySuccess();?>
+        echo displaySuccess();
+        echo displayInfo()?>
         <div class="form-group row">
             <label for="oldPassword" class="col-md-2 offset-md-2 col-form-label">Old Password:</label>
             <div class="col-6">

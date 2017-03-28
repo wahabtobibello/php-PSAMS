@@ -37,10 +37,11 @@ function decodeJwt($prop = null)
     return $jwt->{$prop};
 }
 
-function postMessage($senderId, $recipientId, $subject, $message){
+function postMessage($senderId, $recipientId, $subject, $message)
+{
     global $db;
-    try{
-        $query="INSERT INTO message_t
+    try {
+        $query = "INSERT INTO message_t
                 (subject, text_message, sender_id, recipient_id)
                 VALUES
                 (:subject, :text, :senderId, :recipientId)";
@@ -50,16 +51,17 @@ function postMessage($senderId, $recipientId, $subject, $message){
         $stmt->bindParam(":senderId", $senderId);
         $stmt->bindParam(":recipientId", $recipientId);
         return $stmt->execute();
-    }catch(\Exception $e){
+    } catch (\Exception $e) {
         throw $e;
     }
 }
 
-function getInbox(){
+function getInbox()
+{
     $user = findUser();
     global $db;
 
-    try{
+    try {
         $query = "SELECT *
                   FROM message_t
                   JOIN user_t ON sender_id = user_number
@@ -68,16 +70,17 @@ function getInbox(){
         $stmt->bindParam(':myId', $user['user_number']);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }catch(\Exception $e){
+    } catch (\Exception $e) {
         throw $e;
     }
 }
 
-function getSentMessages(){
+function getSentMessages()
+{
     $user = findUser();
     global $db;
 
-    try{
+    try {
         $query = "SELECT *
                   FROM message_t
                   JOIN user_t ON recipient_id = user_number
@@ -86,7 +89,7 @@ function getSentMessages(){
         $stmt->bindParam(':myId', $user['user_number']);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }catch(\Exception $e){
+    } catch (\Exception $e) {
         throw $e;
     }
 }
@@ -318,6 +321,34 @@ function deleteAppointment($matricNumber, $time)
     }
 }
 
+function updateProfile($firstName, $lastName, $project, $matricNo, $pictureFile = null)
+{
+    global $db;
+    try {
+        $query = "UPDATE user_t
+                  SET first_name=:firstName,last_name=:lastName
+                  WHERE user_number=:matricNo";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':firstName', $firstName);
+        $stmt->bindParam(':lastName', $lastName);
+        $stmt->bindParam(':matricNo', $matricNo);
+        $stmt->execute();
+        $query = "UPDATE student_t
+                  SET project=:project";
+        if ($pictureFile !== null)
+            $query .= ",profile_picture=:pictureFile";
+        $query .= " WHERE matric_number =:matricNo";
+        $stmt = $db->prepare($query);
+        $stmt->bindParam(':project', $project);
+        if ($pictureFile !== null)
+            $stmt->bindParam(':pictureFile', $pictureFile);
+        $stmt->bindParam(':matricNo', $matricNo);
+        return $stmt->execute();
+    } catch (\Exception $e) {
+        throw $e;
+    }
+}
+
 function isAuthenticated()
 {
     if (!request()->cookies->has("access_token")) {
@@ -336,7 +367,7 @@ function requireAuth()
     if (!isAuthenticated()) {
         $accessToken = new Symfony\Component\HttpFoundation\Cookie(
             'access_token', 'Expired', time() - 3600, '/', getenv(COOKIE_DOMAIN));
-        redirect("/login.php", ['cookies' => [$accessToken]]);
+        redirect(" / login . php", ['cookies' => [$accessToken]]);
     }
 }
 
@@ -345,7 +376,7 @@ function requireNotAuth()
     global $session;
     if (isAuthenticated()) {
         $session->getFlashBag()->add('info', 'Log out first');
-        redirect("/index.php");
+        redirect(" / index . php");
     }
 }
 
@@ -411,11 +442,12 @@ function displayErrors()
     }
     $messages = $session->getFlashBag()->get('error');
 
-    $response = "<div class='alert alert-danger alert-dismissible'>";
+    $response = " < div class='alert alert-danger alert-dismissible' > ";
     foreach ($messages as $message) {
-        $response .= "{$message}<br/>";
+        $response .= "
+            $message<br />";
     }
-    $response .= "</div>";
+    $response .= "</div > ";
 
     return $response;
 }
@@ -429,11 +461,12 @@ function displaySuccess()
     }
     $messages = $session->getFlashBag()->get('success');
 
-    $response = "<div class='alert alert-success alert-dismissible'>";
+    $response = "<div class='alert alert-success alert-dismissible' > ";
     foreach ($messages as $message) {
-        $response .= "{$message}<br/>";
+        $response .= "
+            $message<br />";
     }
-    $response .= "</div>";
+    $response .= "</div > ";
 
     return $response;
 }
@@ -447,11 +480,12 @@ function displayInfo()
     }
     $messages = $session->getFlashBag()->get('info');
 
-    $response = "<div class='alert alert-info alert-dismissible'>";
+    $response = "<div class='alert alert-info alert-dismissible' > ";
     foreach ($messages as $message) {
-        $response .= "{$message}<br/>";
+        $response .= "
+            $message<br />";
     }
-    $response .= "</div>";
+    $response .= "</div > ";
 
     return $response;
 }
