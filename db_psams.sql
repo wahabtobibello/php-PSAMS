@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2017 at 04:26 PM
+-- Generation Time: Mar 28, 2017 at 01:35 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -30,8 +30,17 @@ CREATE TABLE `appointment_t` (
   `appointment_id` int(11) NOT NULL,
   `day_id` int(1) NOT NULL,
   `matric_number` int(9) NOT NULL,
-  `appointment_time` datetime NOT NULL
+  `appointment_time` datetime NOT NULL,
+  `staff_number` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `appointment_t`
+--
+
+INSERT INTO `appointment_t` (`appointment_id`, `day_id`, `matric_number`, `appointment_time`, `staff_number`) VALUES
+(1, 1, 130805001, '2017-04-16 15:00:00', 123456789),
+(3, 2, 130805001, '2017-05-01 15:00:00', 123456789);
 
 -- --------------------------------------------------------
 
@@ -73,6 +82,15 @@ CREATE TABLE `message_t` (
   `recipient_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `message_t`
+--
+
+INSERT INTO `message_t` (`message_id`, `send_time`, `subject`, `text_message`, `read_flag`, `sender_id`, `recipient_id`) VALUES
+(4, '2017-03-27 18:12:07', 'Hi', 'Hello', 1, 123456789, 130805001),
+(5, '2017-03-27 18:15:45', 'Hi', 'Hello', 1, 123456789, 130805001),
+(6, '2017-03-27 22:23:08', 'Cancelled Appointment', 'Shii Happened', 1, 123456789, 130805001);
+
 -- --------------------------------------------------------
 
 --
@@ -92,13 +110,13 @@ CREATE TABLE `schedule_t` (
 --
 
 INSERT INTO `schedule_t` (`day_id`, `staff_number`, `from_time`, `to_time`, `appointment_max`) VALUES
-(1, 123456789, NULL, NULL, NULL),
+(1, 123456789, '08:00:00', '17:00:00', 5),
 (2, 123456789, '09:00:00', '15:00:00', 4),
 (3, 123456789, NULL, NULL, NULL),
 (4, 123456789, NULL, NULL, NULL),
 (5, 123456789, NULL, NULL, NULL),
 (6, 123456789, NULL, NULL, NULL),
-(7, 123456789, '08:00:00', '10:00:00', 3);
+(7, 123456789, '10:00:00', '15:00:00', 6);
 
 -- --------------------------------------------------------
 
@@ -130,7 +148,8 @@ CREATE TABLE `student_t` (
 --
 
 INSERT INTO `student_t` (`matric_number`, `staff_number`, `profile_picture`, `project`, `role_id`) VALUES
-(130805001, 123456789, NULL, 'Project Supervisor Appointment Management System', 2);
+(130805001, 123456789, '../img/uploads/130805001.jpg', 'Project Supervisor Appointment Management System', 2),
+(130805045, 123456789, NULL, 'Project Supervisor Appointment Management System', 2);
 
 -- --------------------------------------------------------
 
@@ -193,7 +212,8 @@ CREATE TABLE `user_t` (
 
 INSERT INTO `user_t` (`user_number`, `user_password`, `first_name`, `last_name`) VALUES
 (123456789, '$2y$10$7RHi5nUMmGxPH4qHWhnVwukuCoY7XgIHIL0XP5CPxR3Nptv/tC0Zu', 'Albert', 'Einstein'),
-(130805001, '$2y$10$68WcrwzdFwZ7zTTUPrkgxOgR5jMnxeJVFL1jX6.ROk5oeUymmyJie', 'Tobi', 'Bello');
+(130805001, '$2y$10$68WcrwzdFwZ7zTTUPrkgxOgR5jMnxeJVFL1jX6.ROk5oeUymmyJie', 'Tobi', 'Bello'),
+(130805045, '$2y$10$Qj5LedOUBgi88eKiT4BEp.GjeOrcvTRPm3WJVDd0hVFGQHSAnhP.i', 'Philip', 'Obioha');
 
 --
 -- Indexes for dumped tables
@@ -205,7 +225,8 @@ INSERT INTO `user_t` (`user_number`, `user_password`, `first_name`, `last_name`)
 ALTER TABLE `appointment_t`
   ADD PRIMARY KEY (`appointment_id`),
   ADD KEY `day_id` (`day_id`),
-  ADD KEY `appointment_t_student_t_matric_number_fk` (`matric_number`);
+  ADD KEY `appointment_t_student_t_matric_number_fk` (`matric_number`),
+  ADD KEY `appointment_t_supervisor_t_staff_number_fk` (`staff_number`);
 
 --
 -- Indexes for table `day_t`
@@ -218,8 +239,8 @@ ALTER TABLE `day_t`
 --
 ALTER TABLE `message_t`
   ADD PRIMARY KEY (`message_id`,`send_time`),
-  ADD KEY `message_t_supervisor_t_staff_number_fk` (`sender_id`),
-  ADD KEY `message_t_supervisor_t_staff_number_fk_1` (`recipient_id`);
+  ADD KEY `message_t_user_t_user_number_fk` (`sender_id`),
+  ADD KEY `message_t_user_t__fk_1` (`recipient_id`);
 
 --
 -- Indexes for table `schedule_t`
@@ -268,7 +289,7 @@ ALTER TABLE `user_t`
 -- AUTO_INCREMENT for table `appointment_t`
 --
 ALTER TABLE `appointment_t`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `day_t`
 --
@@ -278,7 +299,7 @@ ALTER TABLE `day_t`
 -- AUTO_INCREMENT for table `message_t`
 --
 ALTER TABLE `message_t`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `title_t`
 --
@@ -293,16 +314,15 @@ ALTER TABLE `title_t`
 --
 ALTER TABLE `appointment_t`
   ADD CONSTRAINT `appointment_t_ibfk_1` FOREIGN KEY (`day_id`) REFERENCES `schedule_t` (`day_id`),
-  ADD CONSTRAINT `appointment_t_student_t_matric_number_fk` FOREIGN KEY (`matric_number`) REFERENCES `student_t` (`matric_number`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `appointment_t_student_t_matric_number_fk` FOREIGN KEY (`matric_number`) REFERENCES `student_t` (`matric_number`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `appointment_t_supervisor_t_staff_number_fk` FOREIGN KEY (`staff_number`) REFERENCES `supervisor_t` (`staff_number`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `message_t`
 --
 ALTER TABLE `message_t`
-  ADD CONSTRAINT `message_t_student_t_matric_number_fk` FOREIGN KEY (`sender_id`) REFERENCES `student_t` (`matric_number`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `message_t_student_t_matric_number_fk_1` FOREIGN KEY (`recipient_id`) REFERENCES `student_t` (`matric_number`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `message_t_supervisor_t_staff_number_fk` FOREIGN KEY (`sender_id`) REFERENCES `supervisor_t` (`staff_number`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `message_t_supervisor_t_staff_number_fk_1` FOREIGN KEY (`recipient_id`) REFERENCES `supervisor_t` (`staff_number`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `message_t_user_t__fk_1` FOREIGN KEY (`recipient_id`) REFERENCES `user_t` (`user_number`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `message_t_user_t_user_number_fk` FOREIGN KEY (`sender_id`) REFERENCES `user_t` (`user_number`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `schedule_t`

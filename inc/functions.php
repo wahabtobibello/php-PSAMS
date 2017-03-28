@@ -367,7 +367,7 @@ function requireAuth()
     if (!isAuthenticated()) {
         $accessToken = new Symfony\Component\HttpFoundation\Cookie(
             'access_token', 'Expired', time() - 3600, '/', getenv(COOKIE_DOMAIN));
-        redirect(" / login . php", ['cookies' => [$accessToken]]);
+        redirect("/login.php", ['cookies' => [$accessToken]]);
     }
 }
 
@@ -376,7 +376,7 @@ function requireNotAuth()
     global $session;
     if (isAuthenticated()) {
         $session->getFlashBag()->add('info', 'Log out first');
-        redirect(" / index . php");
+        redirect("/index.php");
     }
 }
 
