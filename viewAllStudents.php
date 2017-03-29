@@ -9,12 +9,15 @@ foreach (getAllStudents() as $student) {
     if (empty($student['profile_picture'])) {
         $picture = 'http://placehold.it/120x120';
     } else {
-        $picture = $student['profile_picture'];
+        $picture = "img/uploads/" . $student['matric_number'] . "." . pathinfo($student['profile_picture'], PATHINFO_EXTENSION)."?1";
     }
     $matricNo = $student['user_number'];
     ?>
     <div class="media mb-3">
-        <img class="d-flex mr-3" src="<?php echo $picture ?>" alt="Generic placeholder image" width="120" height="120">
+        <div class="d-flex mr-3" style="width:120px; height:120px; background-size:cover;
+                background-image:url('<?php echo $picture?>');">
+            <!--            <img  src="--><?php //echo $picture ?><!--" style="background-size: cover;" alt="image"/>-->
+        </div>
         <div class="media-body">
             <small class="text-muted">Full name: <?php echo $student['first_name'] . " " . $student['last_name']; ?>
             </small>

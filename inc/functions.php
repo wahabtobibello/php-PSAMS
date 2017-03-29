@@ -245,7 +245,8 @@ function findStudentByMatricNo($matricNo)
     }
 }
 
-function getAllStudents(){
+function getAllStudents()
+{
     global $db;
     try {
         $query = "SELECT * 
@@ -492,7 +493,10 @@ function displayErrors()
     }
     $messages = $session->getFlashBag()->get('error');
 
-    $response = "<div class='alert alert-danger alert-dismissible' > ";
+    $response = "<div class='alert alert-danger alert-dismissible fade show' > 
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                        <span aria-hidden=\"true\">&times;</span>
+                    </button>";
     foreach ($messages as $message) {
         $response .= "
             $message<br />";
@@ -511,7 +515,10 @@ function displaySuccess()
     }
     $messages = $session->getFlashBag()->get('success');
 
-    $response = "<div class='alert alert-success alert-dismissible' > ";
+    $response = "<div class='alert alert-success alert-dismissible fade show' > 
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                        <span aria-hidden=\"true\">&times;</span>
+                    </button>";
     foreach ($messages as $message) {
         $response .= "
             $message<br />";
@@ -530,7 +537,10 @@ function displayInfo()
     }
     $messages = $session->getFlashBag()->get('info');
 
-    $response = "<div class='alert alert-info alert-dismissible' > ";
+    $response = "<div class='alert alert-info alert-dismissible fade show' 
+                    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                        <span aria-hidden=\"true\">&times;</span>
+                    </button>> ";
     foreach ($messages as $message) {
         $response .= "
             $message<br />";

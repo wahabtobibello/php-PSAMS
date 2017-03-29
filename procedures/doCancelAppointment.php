@@ -14,5 +14,6 @@ if (round((strtotime($appTime) - strtotime(date('Y-m-d H:i:s'))) / 3600, 1) > 10
         redirect('/viewStudAppointments.php');
     }
 } else {
-    echo "No Time";
+    $session->getFlashBag()->add('error', "You can't cancel this appointment, It's due in less than 10 hours<br/><a href='/inbox.php'>Contact</a> your supervisor");
+    redirect('/viewStudAppointments.php');
 }

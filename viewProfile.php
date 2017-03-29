@@ -13,12 +13,14 @@ if (isSupervisor()) {
 if (empty($user['profile_picture'])) {
     $picture = 'http://placehold.it/320x320';
 } else {
-    $picture = $user['profile_picture'];
+    $picture = "img/uploads/" . $user['matric_number'] . "." . pathinfo($user['profile_picture'], PATHINFO_EXTENSION);
 }
 ?>
     <div class="media offset-md-2 mt-4">
-        <img class="d-flex mr-3" src="<?php echo $picture ?>" style="background-size: cover;" alt="image"
-             width="320" height="320"/>
+        <div class="d-flex mr-3" style="width:320px; height:320px; background-size:cover;
+                background-image:url('<?php echo $picture?>');">
+            <!--            <img  src="--><?php //echo $picture ?><!--" style="background-size: cover;" alt="image"/>-->
+        </div>
         <div class="media-body">
             <h2 class="mt-0 mb-3">Basic Info</h2>
             <p class="lead"><strong>Full name:</strong> <?php echo $user['first_name'] . " " . $user['last_name']; ?>

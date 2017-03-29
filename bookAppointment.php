@@ -8,7 +8,7 @@ $day = request()->get('day');
 $from = request()->get('from');
 $to = request()->get('to');
 $endDate = strtotime(request()->get('endDate'));
-$nextDate = date('y-m-d', strtotime("next $day"));
+$nextDate = date('y-m-d', strtotime("$day"));
 $dates = [];
 while ($endDate > strtotime($nextDate)) {
     if (numberOfSlotsLeftOnDate($nextDate) > 0) {
