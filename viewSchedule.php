@@ -23,6 +23,7 @@ require_once __DIR__ . '/inc/header.php' ?>
             $from = $item['from_time'];
             $to = $item['to_time'];
             $max = $item['appointment_max'];
+            $myNo=$user['user_number'];
             echo "<tr>";
             echo "<th scope=\"row\">" . $day . "</th>";
             echo "<td>" . $from . "</td>";
@@ -33,7 +34,7 @@ require_once __DIR__ . '/inc/header.php' ?>
                 <button type='button' class='btn btn-primary' data-toggle='modal' data-target='#editSchedule'
                 data-day='" . $day . "' data-id='" . $id . "' data-from='" . $from
                 . "' data-to='" . $to . "' data-max=" . $max . ">Edit</button>
-                <form class='form-inline' method='post' action='procedures/doClearSchedule.php?id=" . $id . "&sn=" . $user['staff_number'] . "'>
+                <form class='form-inline' method='post' action='procedures/doClearSchedule.php?id=" . $id . "&sn=" . $myNo . "'>
                 <button type='submit' class='btn btn-secondary'>
                   Clear
                 </button>

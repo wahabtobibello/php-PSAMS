@@ -7,7 +7,6 @@ $subject = request()->get('subject');
 $message = request()->get('messageText');
 $time = request()->get('time');
 
-echo "$recipientID, $subject, $message";
 try {
     postMessage($sender['user_number'], $recipientID, $subject, $message);
     $session->getFlashBag()->add('success', 'Message sent');
