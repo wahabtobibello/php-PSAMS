@@ -1,1 +1,1 @@
-# project-supervision-appointment-management-system
+# Project Supervision Appointment Management System
