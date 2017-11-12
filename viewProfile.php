@@ -15,7 +15,7 @@
 	if (empty($user['profile_picture'])) {
 		$picture = 'http://placehold.it/320x320';
 	} else {
-		$picture = "img/uploads/" . $user['matric_number'] . "." . pathinfo($user['profile_picture'], PATHINFO_EXTENSION);
+		$picture = "img/uploads/" . $user['matric_number'] . "." . pathinfo($user['profile_picture'], PATHINFO_EXTENSION)."?12345678";
 	}
 ?>
 <div class="media offset-md-2 mt-4">

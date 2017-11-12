@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Project Supervision Appointment Management System</title>
 	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 
 	<link rel="stylesheet" href="css/styles.css">
 </head>
@@ -17,7 +17,7 @@
 <body>
 <!--header-->
 <header>
-	<nav class="navbar navbar-toggleable-md navbar-inverse">
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
 		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
 				data-target="#navbarNavDropdown"
 				aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
